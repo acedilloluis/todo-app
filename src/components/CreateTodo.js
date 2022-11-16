@@ -11,7 +11,7 @@ function CreateTodo({ addTodo }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="create-todo" onSubmit={handleSubmit}>
       <label htmlFor="add-todo" className="visually-hidden">
         Enter a new todo
       </label>
@@ -22,6 +22,7 @@ function CreateTodo({ addTodo }) {
         placeholder="Create a new todo"
         minLength="1"
         maxLength="50"
+        className="box"
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
       />

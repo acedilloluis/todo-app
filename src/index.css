@@ -1,3 +1,233 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
+
+:root {
+  /* primary */
+  --bright-blue: hsl(220, 98%, 61%);
+
+  /* dark theme */
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --lighter-grayish-blue: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --even-darker-grayish-blue: hsl(237, 14%, 26%);
+
+  --font-size: 18px;
+  --normal: 400;
+  --bold: 700;
+
+  --box-border-radius: 0.25rem;
+
+  --margin: 1rem;
+  --padding: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--very-dark-blue);
+  color: var(--light-grayish-blue);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: var(--font-size);
+  font-weight: var(--bold);
+  margin: 0;
+  width: 100%;
+}
+
+.box {
+  background: var(--very-dark-desaturated-blue);
+  border-radius: var(--box-border-radius);
+  color: white;
+  padding: 1rem 0.5rem;
+}
+
+.circle {
+  background: transparent;
+  border: 0.125rem solid var(--very-dark-grayish-blue);
+  border-radius: 50%;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+
 .visually-hidden {
   display: none;
+}
+/* Component styles */
+#wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#wrapper > main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+
+#wrapper > main > header {
+  align-self: stretch;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: auto;
+  letter-spacing: 0.5rem;
+  margin-bottom: var(--margin);
+  padding: 0 var(--padding);
+}
+
+#create-todo {
+  align-self: stretch;
+  caret-color: var(--bright-blue);
+  flex: auto;
+  margin-bottom: var(--margin);
+  padding: 0 var(--padding);
+
+  & input {
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: inherit;
+    width: 100%;
+  }
+}
+
+#todo-list {
+  align-self: stretch;
+  color: var(--light-grayish-blue);
+  font-size: 0.75rem;
+  flex: auto;
+  list-style-type: none;
+  margin: 0 var(--margin);
+  margin-bottom: var(--margin);
+  padding: 0;
+
+  & li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+    border-bottom: 0.063rem solid var(--very-dark-grayish-blue);
+
+    & label {
+      cursor: pointer;
+      display: block;
+      padding-left: 1.25rem;
+      position: relative;
+
+      & input {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+      }
+
+      & .circle {
+        position: absolute;
+        top: -0.2rem;
+        left: -0.2rem;
+      }
+
+      & p {
+        display: inline;
+      }
+      /* need to change styles with js since filtering the items removes the sytling */
+      & input:checked ~ .circle {
+        background-image: url('./images/icon-check.svg'),
+          linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        background-repeat: no-repeat, no-repeat;
+        background-position: center, center;
+      }
+
+      & input:checked ~ p {
+        color: var(--dark-grayish-blue);
+        text-decoration: solid line-through var(--dark-grayish-blue) 0.125rem;
+      }
+    }
+  }
+
+  & li:last-child {
+    border-bottom: none;
+    color: var(--dark-grayish-blue);
+
+    & p {
+      cursor: default;
+      display: inline;
+      margin: 0;
+    }
+
+    & button {
+      background: transparent;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      padding: 0.5rem 0;
+      margin: 0;
+    }
+
+    & button:hover {
+      color: var(--light-grayish-blue);
+    }
+  }
+
+  & img {
+    cursor: pointer;
+    margin-left: 0.3rem;
+  }
+}
+
+#filter-btns {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: auto;
+  font-size: 0.85rem;
+  margin: 0 var(--margin);
+  margin-bottom: var(--margin);
+
+  & input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  & p {
+    color: var(--dark-grayish-blue);
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  & p:hover {
+    color: var(--light-grayish-blue);
+  }
+
+  & input:checked ~ p {
+    color: var(--bright-blue);
+  }
+}
+
+#wrapper > main > footer {
+  color: var(--dark-grayish-blue);
+  font-size: 0.75rem;
+  margin-bottom: var(--margin);
 }

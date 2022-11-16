@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 function FilterButton({ name, setFilter }) {
   return (
-    <>
-      <label htmlFor={name}>{name}</label>
+    <label>
       <input
         type="radio"
-        id={name}
         name="filters"
         value={name}
         onClick={() => setFilter(name)}
       />
-    </>
+      <p>{name}</p>
+    </label>
   );
 }
 

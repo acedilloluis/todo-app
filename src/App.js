@@ -65,34 +65,38 @@ function App({ defaultTodos }) {
   } remaining`;
 
   return (
-    <div>
+    <div id="wrapper">
       <picture>
         <source
           srcSet={desktopDarkBg}
           type="image/jpeg"
-          media="(min-width: 1000px)"
+          media="(min-width: 375px)"
         />
-        <img src={mobileDarkBg} alt="" />
+        <img src={mobileDarkBg} alt="" className="responsive-img" />
       </picture>
 
-      <header>
-        <h1>TODO</h1>
-        <img src={sunIcon} alt="icon of the sun" />
-      </header>
-
       <main>
+        <header>
+          <h1>TODO</h1>
+          <img src={sunIcon} alt="icon of the sun" />
+        </header>
+
         <CreateTodo addTodo={addTodo} />
 
-        <ul>{todoList}</ul>
-        <div>
-          <p>{todosCounter}</p>
-          <ClearButton clearCompleted={clearCompleted} />
-        </div>
+        <ul id="todo-list" className="box">
+          {todoList}
+          <li>
+            <p>{todosCounter}</p>
+            <ClearButton clearCompleted={clearCompleted} />
+          </li>
+        </ul>
 
-        <form>{filterBtns}</form>
+        <form id="filter-btns" className="box">
+          {filterBtns}
+        </form>
+
+        <footer>Drag and drop to reorder list</footer>
       </main>
-
-      <footer>Drag and drop to reorder list</footer>
     </div>
   );
 }
