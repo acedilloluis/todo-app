@@ -84,12 +84,12 @@ body {
   display: none;
 }
 /* Component styles */
-#wrapper {
+.wrapper {
   position: relative;
   width: 100%;
 }
 
-#wrapper > main {
+.wrapper > main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +99,7 @@ body {
   width: 100%;
 }
 
-#wrapper > main > header {
+.wrapper > main > header {
   align-self: stretch;
   color: white;
   display: flex;
@@ -248,7 +248,7 @@ body {
   }
 }
 
-#wrapper > main > footer {
+.wrapper > main > footer {
   color: var(--dark-grayish-blue);
   font-size: 0.75rem;
   margin-bottom: var(--margin);

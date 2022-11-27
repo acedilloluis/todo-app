@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { createRoot } from 'react-dom/client';
 import { nanoid } from 'nanoid';
 import CreateTodo from './components/CreateTodo';
 import Todo from './components/Todo';
@@ -8,6 +8,20 @@ import ClearButton from './components/ClearButton';
 import desktopDarkBg from './images/bg-desktop-dark.jpg';
 import mobileDarkBg from './images/bg-mobile-dark.jpg';
 import sunIcon from './images/icon-sun.svg';
+import './index.css';
+
+const DEFAULT_TODOS = [
+  { id: 'todo-0', task: 'Complete onine JavaScript course', completed: true },
+  { id: 'todo-1', task: 'Jog around the park 3x', completed: false },
+  { id: 'todo-2', task: '10 minute meditation', completed: false },
+  { id: 'todo-3', task: 'Read for 1 hour', completed: false },
+  { id: 'todo-4', task: 'Pick up groceries', completed: false },
+  {
+    id: 'todo-5',
+    task: 'Complete Todo App on Frontend Mentor',
+    completed: false,
+  },
+];
 
 const FILTER_MAP = {
   All: () => true,
@@ -15,8 +29,8 @@ const FILTER_MAP = {
   Completed: (todo) => todo.completed,
 };
 
-function App({ defaultTodos }) {
-  const [todos, setTodos] = useState(defaultTodos);
+function App() {
+  const [todos, setTodos] = useState(DEFAULT_TODOS);
   const [filter, setFilter] = useState('All');
 
   function addTodo(task) {
@@ -65,7 +79,7 @@ function App({ defaultTodos }) {
   } remaining`;
 
   return (
-    <div id="wrapper">
+    <>
       <picture>
         <source
           srcSet={desktopDarkBg}
@@ -97,12 +111,9 @@ function App({ defaultTodos }) {
 
         <footer>Drag and drop to reorder list</footer>
       </main>
-    </div>
+    </>
   );
 }
 
-App.propTypes = {
-  defaultTodos: PropTypes.array,
-};
-
-export default App;
+const root = document.querySelector('#root');
+createRoot(root).render(<App />);

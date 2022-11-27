@@ -23,7 +23,7 @@ function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
 }
 
 Todo.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   task: PropTypes.string,
   completed: PropTypes.bool,
   toggleTodoCompleted: PropTypes.func,
