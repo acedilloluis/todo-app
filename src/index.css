@@ -13,6 +13,19 @@
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --even-darker-grayish-blue: hsl(237, 14%, 26%);
 
+  /* light theme */
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  --bg-color: var(--very-dark-blue);
+  --box-bg-color: var(--very-dark-desaturated-blue);
+  --list-font-color: var(--light-grayish-blue);
+  --list-checked-font-color: var(--dark-grayish-blue);
+  --filter-active-font-color: var(--bright-blue);
+
   --font-size: 18px;
   --normal: 400;
   --bold: 700;
@@ -23,10 +36,19 @@
   --padding: 1rem;
 }
 
+[data-theme='light'] {
+  --bg-color: var(--very-light-gray);
+  --box-bg-color: white;
+  --list-font-color: var(--very-dark-grayish-blue);
+  --list-checked-font-color: var(--very-light-grayish-blue);
+  --info-font-color: var(--very-light-gray);
+  --filter-font-color: var(--dark-grayish-blue);
+}
+
 * {
   box-sizing: border-box;
 }
-
+/* dark theme by default */
 html,
 body {
   background: var(--very-dark-blue);
@@ -183,7 +205,7 @@ body {
     }
 
     & button:hover {
-      color: var(--light-grayish-blue);
+      color: var(--lighter-grayish-blue);
     }
   }
 
@@ -218,9 +240,9 @@ body {
   }
 
   & p:hover {
-    color: var(--light-grayish-blue);
+    color: var(--lighter-grayish-blue);
   }
-
+  /* need to manage checked state with js */
   & input:checked ~ p {
     color: var(--bright-blue);
   }
