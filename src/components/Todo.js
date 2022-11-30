@@ -9,7 +9,7 @@ function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
         <input
           type="checkbox"
           name={id}
-          value={completed}
+          checked={completed}
           onClick={() => toggleTodoCompleted(id)}
         />
         <span className="circle"></span>

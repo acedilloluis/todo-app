@@ -85,7 +85,12 @@ function App() {
       />
     ));
   const filterBtns = Object.keys(FILTER_MAP).map((name) => (
-    <FilterButton key={name} name={name} setFilter={setFilter} />
+    <FilterButton
+      key={name}
+      name={name}
+      filter={filter}
+      setFilter={setFilter}
+    />
   ));
 
   const todosCounter = `${todoList.length} ${

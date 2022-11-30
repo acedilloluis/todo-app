@@ -190,7 +190,7 @@ body {
       & p {
         display: inline;
       }
-      /* need to change styles with js since filtering the items removes the sytling */
+
       & input:checked ~ .circle {
         background: linear-gradient(var(--box-bg-color), var(--box-bg-color))
             padding-box,
@@ -277,7 +277,7 @@ body {
   & p:hover {
     color: var(--button-hover-font-color);
   }
-  /* need to manage checked state with js */
+
   & input:checked ~ p {
     color: var(--bright-blue);
   }
