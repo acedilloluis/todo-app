@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 function FilterButton({ name, setFilter }) {
   return (
-    <label>
-      <input
-        type="radio"
-        name="filters"
-        value={name}
-        onClick={() => setFilter(name)}
-      />
-      <p>{name}</p>
+    <label
+      onClick={() => setFilter(name)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') setFilter(name);
+      }}
+    >
+      <input type="radio" name="filters" value={name} />
+      <p tabIndex="0">{name}</p>
     </label>
   );
 }

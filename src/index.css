@@ -125,6 +125,12 @@ body {
   letter-spacing: 0.5rem;
   margin-bottom: var(--margin);
   padding: 0 var(--padding);
+
+  & > button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 #create-todo {
@@ -202,6 +208,12 @@ body {
         text-decoration: solid line-through var(--list-checked-font-color)
           0.063rem;
       }
+    }
+
+    & button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 

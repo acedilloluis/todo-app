@@ -110,11 +110,13 @@ function App() {
       <main>
         <header>
           <h1>TODO</h1>
-          <img
-            src={theme === 'dark' ? sunIcon : moonIcon}
-            alt={`icon of the ${theme === 'dark' ? 'sun' : 'moon'}`}
-            onClick={switchTheme}
-          />
+
+          <button type="button" title="Toggle theme" onClick={switchTheme}>
+            <img
+              src={theme === 'dark' ? sunIcon : moonIcon}
+              alt={`icon of the ${theme === 'dark' ? 'sun' : 'moon'}`}
+            />
+          </button>
         </header>
 
         <CreateTodo addTodo={addTodo} />
