@@ -8,6 +8,9 @@ import ClearButton from './components/ClearButton';
 import desktopDarkBg from './images/bg-desktop-dark.jpg';
 import mobileDarkBg from './images/bg-mobile-dark.jpg';
 import sunIcon from './images/icon-sun.svg';
+import desktopLightBg from './images/bg-desktop-light.jpg';
+import mobileLightBg from './images/bg-mobile-light.jpg';
+import moonIcon from './images/icon-moon.svg';
 import './index.css';
 
 const DEFAULT_TODOS = [
@@ -32,6 +35,7 @@ const FILTER_MAP = {
 function App() {
   const [todos, setTodos] = useState(DEFAULT_TODOS);
   const [filter, setFilter] = useState('All');
+  const [theme, setTheme] = useState('dark');
 
   function addTodo(task) {
     const newTodo = { id: `todo-${nanoid()}`, task: task, completed: false };
@@ -58,6 +62,16 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  function switchTheme() {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      setTheme('light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      setTheme('dark');
+    }
+  }
+
   const todoList = todos
     .filter(FILTER_MAP[filter])
     .map((todo) => (
@@ -82,17 +96,25 @@ function App() {
     <>
       <picture>
         <source
-          srcSet={desktopDarkBg}
+          srcSet={theme === 'dark' ? desktopDarkBg : desktopLightBg}
           type="image/jpeg"
           media="(min-width: 375px)"
         />
-        <img src={mobileDarkBg} alt="" className="responsive-img" />
+        <img
+          src={theme === 'dark' ? mobileDarkBg : mobileLightBg}
+          alt=""
+          className="responsive-img"
+        />
       </picture>
 
       <main>
         <header>
           <h1>TODO</h1>
-          <img src={sunIcon} alt="icon of the sun" />
+          <img
+            src={theme === 'dark' ? sunIcon : moonIcon}
+            alt={`icon of the ${theme === 'dark' ? 'sun' : 'moon'}`}
+            onClick={switchTheme}
+          />
         </header>
 
         <CreateTodo addTodo={addTodo} />

@@ -22,10 +22,14 @@
 
   --bg-color: var(--very-dark-blue);
   --box-bg-color: var(--very-dark-desaturated-blue);
+  --circle-border-color: var(--very-dark-grayish-blue);
   --list-font-color: var(--light-grayish-blue);
   --list-checked-font-color: var(--dark-grayish-blue);
+  --list-border-color: var(--very-dark-grayish-blue);
   --filter-font-color: var(--dark-grayish-blue);
   --filter-active-font-color: var(--bright-blue);
+  --button-hover-font-color: var(--light-grayish-blue);
+  --footer-font-color: var(--dark-grayish-blue);
 
   --font-size: 18px;
   --normal: 400;
@@ -38,12 +42,15 @@
 }
 
 [data-theme='light'] {
-  --bg-color: var(--very-light-gray);
+  --bg-color: var(--very-light-grayish-blue);
   --box-bg-color: white;
+  --circle-border-color: var(--light-grayish-blue);
   --list-font-color: var(--very-dark-grayish-blue);
-  --list-checked-font-color: var(--very-light-grayish-blue);
-  --info-font-color: var(--very-light-gray);
+  --list-checked-font-color: var(--dark-grayish-blue);
+  --list-border-color: var(--light-grayish-blue);
   --filter-font-color: var(--dark-grayish-blue);
+  --button-hover-font-color: var(--very-dark-grayish-blue);
+  --footer-font-color: var(--dark-grayish-blue);
 }
 
 * {
@@ -70,10 +77,18 @@ body {
 
 .circle {
   background: transparent;
-  border: 0.125rem solid var(--very-dark-grayish-blue);
+  border: 0.125rem solid var(--circle-border-color);
   border-radius: 50%;
   height: 1.15rem;
   width: 1.15rem;
+}
+
+.circle:hover {
+  background: linear-gradient(var(--box-bg-color), var(--box-bg-color))
+      padding-box,
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+      border-box;
+  border: 0.125rem solid transparent;
 }
 
 .responsive-img {
@@ -124,7 +139,7 @@ body {
     color: inherit;
     font-family: inherit;
     font-size: 0.75rem;
-    font-weight: inherit;
+    font-weight: var(--normal);
     width: 100%;
   }
 }
@@ -133,6 +148,7 @@ body {
   align-self: stretch;
   color: var(--list-font-color);
   font-size: 0.75rem;
+  font-weight: var(--normal);
   flex: auto;
   list-style-type: none;
   margin: 0 var(--margin);
@@ -144,7 +160,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0.5rem;
-    border-bottom: 0.063rem solid var(--very-dark-grayish-blue);
+    border-bottom: 0.063rem solid var(--list-border-color);
 
     & label {
       cursor: pointer;
@@ -170,6 +186,11 @@ body {
       }
       /* need to change styles with js since filtering the items removes the sytling */
       & input:checked ~ .circle {
+        background: linear-gradient(var(--box-bg-color), var(--box-bg-color))
+            padding-box,
+          linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+            border-box;
+        border: 0.125rem solid transparent;
         background-image: url('./images/icon-check.svg'),
           linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
         background-repeat: no-repeat, no-repeat;
@@ -179,14 +200,14 @@ body {
       & input:checked ~ p {
         color: var(--list-checked-font-color);
         text-decoration: solid line-through var(--list-checked-font-color)
-          0.125rem;
+          0.063rem;
       }
     }
   }
 
   & li:last-child {
     border-bottom: none;
-    color: var(--list-checked-font-color);
+    color: var(--filter-font-color);
 
     & p {
       cursor: default;
@@ -207,7 +228,7 @@ body {
     }
 
     & button:hover {
-      color: var(--lighter-grayish-blue);
+      color: var(--button-hover-font-color);
     }
   }
 
@@ -242,7 +263,7 @@ body {
   }
 
   & p:hover {
-    color: var(--lighter-grayish-blue);
+    color: var(--button-hover-font-color);
   }
   /* need to manage checked state with js */
   & input:checked ~ p {
@@ -251,7 +272,7 @@ body {
 }
 
 .wrapper > main > footer {
-  color: var(--list-checked-font-color);
+  color: var(--footer-font-color);
   font-size: 0.75rem;
   margin-bottom: var(--margin);
 }
