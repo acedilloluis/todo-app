@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 function FilterButton({ name, filter, setFilter }) {
   return (
     <label
-      onClick={() => setFilter(name)}
       onKeyDown={(e) => {
         if (e.key === 'Enter') setFilter(name);
       }}
@@ -14,6 +13,7 @@ function FilterButton({ name, filter, setFilter }) {
         name="filters"
         value={name}
         checked={name === filter}
+        onChange={() => setFilter(name)}
       />
       <p tabIndex="0">{name}</p>
     </label>

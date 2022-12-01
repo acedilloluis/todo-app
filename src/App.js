@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { nanoid } from 'nanoid';
 import CreateTodo from './components/CreateTodo';
@@ -36,6 +36,7 @@ function App() {
   const [todos, setTodos] = useState(DEFAULT_TODOS);
   const [filter, setFilter] = useState('All');
   const [theme, setTheme] = useState('dark');
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1075);
 
   function addTodo(task) {
     const newTodo = { id: `todo-${nanoid()}`, task: task, completed: false };
@@ -72,6 +73,10 @@ function App() {
     }
   }
 
+  function updateMedia() {
+    setIsDesktop(window.innerWidth > 1075);
+  }
+
   const todoList = todos
     .filter(FILTER_MAP[filter])
     .map((todo) => (
@@ -97,18 +102,23 @@ function App() {
     todoList.length === 1 ? 'item' : 'items'
   } remaining`;
 
+  useEffect(() => {
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  });
+
   return (
     <>
       <picture>
         <source
           srcSet={theme === 'dark' ? desktopDarkBg : desktopLightBg}
           type="image/jpeg"
-          media="(min-width: 375px)"
+          media="(min-width: 650px)"
         />
         <img
           src={theme === 'dark' ? mobileDarkBg : mobileLightBg}
           alt=""
-          className="responsive-img"
+          className="img"
         />
       </picture>
 
@@ -130,13 +140,16 @@ function App() {
           {todoList}
           <li>
             <p>{todosCounter}</p>
+            {isDesktop ? <form id="filter-btns">{filterBtns}</form> : null}
             <ClearButton clearCompleted={clearCompleted} />
           </li>
         </ul>
 
-        <form id="filter-btns" className="box">
-          {filterBtns}
-        </form>
+        {!isDesktop ? (
+          <form id="filter-btns" className="box">
+            {filterBtns}
+          </form>
+        ) : null}
 
         <footer>Drag and drop to reorder list</footer>
       </main>

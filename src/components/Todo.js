@@ -10,7 +10,7 @@ function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
           type="checkbox"
           name={id}
           checked={completed}
-          onClick={() => toggleTodoCompleted(id)}
+          onChange={() => toggleTodoCompleted(id)}
         />
         <span className="circle"></span>
         <p>{task}</p>

@@ -91,9 +91,10 @@ body {
   border: 0.125rem solid transparent;
 }
 
-.responsive-img {
+.img {
   height: auto;
-  max-width: 100%;
+  width: 100%;
+  object-position: center;
 }
 
 .visually-hidden {
@@ -165,7 +166,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
     border-bottom: 0.063rem solid var(--list-border-color);
 
     & label {
@@ -184,14 +185,15 @@ body {
       & .circle {
         position: absolute;
         top: -0.2rem;
-        left: -0.2rem;
+        left: -0.3rem;
       }
 
       & p {
         display: inline;
+        padding: 0.75rem 0;
       }
 
-      & input:checked ~ .circle {
+      & input[type='checkbox']:checked ~ .circle {
         background: linear-gradient(var(--box-bg-color), var(--box-bg-color))
             padding-box,
           linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
@@ -203,7 +205,7 @@ body {
         background-position: center, center;
       }
 
-      & input:checked ~ p {
+      & input[type='checkbox']:checked ~ p {
         color: var(--list-checked-font-color);
         text-decoration: solid line-through var(--list-checked-font-color)
           0.063rem;
@@ -220,6 +222,7 @@ body {
   & li:last-child {
     border-bottom: none;
     color: var(--filter-font-color);
+    padding: 1.25rem 1rem;
 
     & p {
       cursor: default;
@@ -287,4 +290,39 @@ body {
   color: var(--footer-font-color);
   font-size: 0.75rem;
   margin-bottom: var(--margin);
+}
+
+@media (min-width: 1076px) {
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wrapper > main {
+    width: 55%;
+    top: 15%;
+  }
+
+  #todo-list > li > button {
+    display: none;
+  }
+
+  #todo-list > li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    & > button {
+      display: inline-block;
+    }
+  }
+
+  #filter-btns {
+    margin: 0;
+  }
+
+  #todo-list > li:hover > button {
+    display: block;
+  }
 }
