@@ -16,9 +16,9 @@
   /* light theme */
   --very-light-gray: hsl(0, 0%, 98%);
   --very-light-grayish-blue: hsl(236, 33%, 92%);
-  --light-grayish-blue: hsl(233, 11%, 84%);
-  --dark-grayish-blue: hsl(236, 9%, 61%);
-  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  --light-grayish-blue-lt: hsl(233, 11%, 84%);
+  --dark-grayish-blue-lt: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue-lt: hsl(235, 19%, 35%);
 
   --bg-color: var(--very-dark-blue);
   --box-bg-color: var(--very-dark-desaturated-blue);
@@ -44,13 +44,13 @@
 [data-theme='light'] {
   --bg-color: var(--very-light-grayish-blue);
   --box-bg-color: white;
-  --circle-border-color: var(--light-grayish-blue);
-  --list-font-color: var(--very-dark-grayish-blue);
-  --list-checked-font-color: var(--dark-grayish-blue);
-  --list-border-color: var(--light-grayish-blue);
-  --filter-font-color: var(--dark-grayish-blue);
-  --button-hover-font-color: var(--very-dark-grayish-blue);
-  --footer-font-color: var(--dark-grayish-blue);
+  --circle-border-color: var(--light-grayish-blue-lt);
+  --list-font-color: var(--very-dark-grayish-blue-lt);
+  --list-checked-font-color: var(--dark-grayish-blue-lt);
+  --list-border-color: var(--light-grayish-blue-lt);
+  --filter-font-color: var(--dark-grayish-blue-lt);
+  --button-hover-font-color: var(--very-dark-grayish-blue-lt);
+  --footer-font-color: var(--dark-grayish-blue-lt);
 }
 
 * {
