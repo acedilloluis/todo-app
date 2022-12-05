@@ -161,8 +161,6 @@ function App() {
             {filterBtns}
           </form>
         ) : null}
-
-        <footer>Drag and drop to reorder list</footer>
       </main>
     </>
   );
