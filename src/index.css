@@ -57,7 +57,7 @@
 * {
   box-sizing: border-box;
 }
-/* dark theme by default */
+
 html,
 body {
   background: var(--bg-color);
@@ -83,7 +83,8 @@ body {
   width: 1.15rem;
 }
 
-.circle:hover {
+.circle:hover,
+.circle:focus {
   background: linear-gradient(var(--box-bg-color), var(--box-bg-color))
       padding-box,
     linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
@@ -167,7 +168,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.7rem 1rem;
+    padding: 1.6rem 1rem;
     border-bottom: 0.063rem solid var(--list-border-color);
 
     & form {
@@ -264,6 +265,10 @@ body {
     & button:hover {
       color: var(--button-hover-font-color);
     }
+
+    & button:focus {
+      color: var(--button-hover-font-color);
+    }
   }
 
   & img {
@@ -281,6 +286,7 @@ body {
   font-size: 0.85rem;
   margin: 0 var(--margin);
   margin-bottom: var(--margin);
+  padding: 1rem 0.5rem;
 
   & input[type='radio'] {
     opacity: 0;
@@ -297,6 +303,10 @@ body {
   }
 
   & p:hover {
+    color: var(--button-hover-font-color);
+  }
+
+  & p:focus {
     color: var(--button-hover-font-color);
   }
 
@@ -318,16 +328,21 @@ body {
   }
 
   #todo-list > li > button {
-    display: none;
+    opacity: 0; /* allow button to gain focus when not visible to user */
+  }
+
+  #todo-list > li > button:focus {
+    opacity: 1;
   }
 
   #todo-list > li:last-child {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    font-weight: var(--bold);
 
     & > button {
-      display: inline-block;
+      opacity: 1;
     }
   }
 
@@ -336,6 +351,6 @@ body {
   }
 
   #todo-list > li:hover > button {
-    display: block;
+    opacity: 1;
   }
 }

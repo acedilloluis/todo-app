@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 function Todo({
@@ -11,12 +11,33 @@ function Todo({
 }) {
   const [editedTodo, setEditedTodo] = useState(task);
   const [isEditing, setIsEditing] = useState(false);
+  const editFieldRef = useRef(null);
+  const circleBtnRef = useRef(null);
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+
+  const wasEditing = usePrevious(isEditing);
 
   function handleSubmit(e) {
     e.preventDefault();
     editTodo(id, editedTodo);
     setIsEditing(false);
   }
+
+  useEffect(() => {
+    if (!wasEditing && isEditing) {
+      setTimeout(() => editFieldRef.current.focus(), 2); // if user opens editing field by keyboard need to make sure it doesn't submit immediately
+    }
+    if (wasEditing && !isEditing) {
+      circleBtnRef.current.focus();
+    }
+  }, [wasEditing, isEditing]);
 
   const editingTemplate = (
     <form onSubmit={handleSubmit}>
@@ -30,6 +51,7 @@ function Todo({
         minLength="1"
         maxLength="50"
         value={editedTodo}
+        ref={editFieldRef}
         onChange={(e) => setEditedTodo(e.target.value)}
       />
     </form>
@@ -44,8 +66,23 @@ function Todo({
           checked={completed}
           onChange={() => toggleTodoCompleted(id)}
         />
-        <span className="circle"></span>
-        <p onClick={() => setIsEditing(true)}>{task}</p>
+        <span
+          className="circle"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') toggleTodoCompleted(id);
+          }}
+          ref={circleBtnRef}
+          tabIndex={0}
+        ></span>
+        <p
+          onClick={() => setIsEditing(true)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') setIsEditing(true);
+          }}
+          tabIndex={0}
+        >
+          {task}
+        </p>
       </label>
 
       <button type="button" title="Delete item" onClick={() => deleteTodo(id)}>
