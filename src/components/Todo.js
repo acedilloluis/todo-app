@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
-  // for checkboxes to be keyboard accessible need to move p out of label; so need to change checked styles with js
-  return (
-    <li>
+function Todo({
+  id,
+  task,
+  completed,
+  toggleTodoCompleted,
+  deleteTodo,
+  editTodo,
+}) {
+  const [editedTodo, setEditedTodo] = useState(task);
+  const [isEditing, setIsEditing] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    editTodo(id, editedTodo);
+    setIsEditing(false);
+  }
+
+  const editingTemplate = (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor={`editing-${id}`} className="visually-hidden">
+        Edit the todo
+      </label>
+      <input
+        type="text"
+        id={`editing-${id}`}
+        name={`editing-${id}`}
+        minLength="1"
+        maxLength="50"
+        value={editedTodo}
+        onChange={(e) => setEditedTodo(e.target.value)}
+      />
+    </form>
+  );
+
+  const viewTemplate = (
+    <>
       <label>
         <input
           type="checkbox"
@@ -13,7 +45,7 @@ function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
           onChange={() => toggleTodoCompleted(id)}
         />
         <span className="circle"></span>
-        <p>{task}</p>
+        <p onClick={() => setIsEditing(true)}>{task}</p>
       </label>
 
       <button type="button" title="Delete item" onClick={() => deleteTodo(id)}>
@@ -25,8 +57,10 @@ function Todo({ id, task, completed, toggleTodoCompleted, deleteTodo }) {
           />
         </svg>
       </button>
-    </li>
+    </>
   );
+
+  return <li>{isEditing ? editingTemplate : viewTemplate}</li>;
 }
 
 Todo.propTypes = {
@@ -35,6 +69,7 @@ Todo.propTypes = {
   completed: PropTypes.bool,
   toggleTodoCompleted: PropTypes.func,
   deleteTodo: PropTypes.func,
+  editTodo: PropTypes.func,
 };
 
 export default Todo;

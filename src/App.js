@@ -43,6 +43,16 @@ function App() {
     setTodos([...todos, newTodo]);
   }
 
+  function editTodo(id, task) {
+    const editedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, task: task };
+      }
+      return todo;
+    });
+    setTodos(editedTodos);
+  }
+
   function deleteTodo(id) {
     const remainingTodos = todos.filter((todo) => id !== todo.id);
     setTodos(remainingTodos);
@@ -87,6 +97,7 @@ function App() {
         completed={todo.completed}
         toggleTodoCompleted={toggleTodoCompleted}
         deleteTodo={deleteTodo}
+        editTodo={editTodo}
       />
     ));
   const filterBtns = Object.keys(FILTER_MAP).map((name) => (
