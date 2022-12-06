@@ -40,7 +40,7 @@ function App() {
 
   function addTodo(task) {
     const newTodo = { id: `todo-${nanoid()}`, task: task, completed: false };
-    setTodos([...todos, newTodo]);
+    setTodos([newTodo, ...todos]);
   }
 
   function editTodo(id, task) {
